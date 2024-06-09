@@ -49,14 +49,14 @@ function gameStoreInitialize()
 		offers = {}
 	}
 	
-	addCategory(nil, "Premium Time", 20, CATEGORY_PREMIUM, "Enhance your gaming experience by gaining additional abilities and advantages:\n\nï access to Premium areas\nï use Tibia's transport system (ships, carpet)\nï more spells\nï rent houses\nï found guilds\nï offline training\nï larger Depots\nï and many more\n\n- valid for all characters on this account\n- activated at purchase")
+	addCategory(nil, "Premium Time", 20, CATEGORY_PREMIUM, "Enhance your gaming experience by gaining additional abilities and advantages:\n\n‚Ä¢ access to Premium areas\n‚Ä¢ use Tibia's transport system (ships, carpet)\n‚Ä¢ more spells\n‚Ä¢ rent houses\n‚Ä¢ found guilds\n‚Ä¢ offline training\n‚Ä¢ larger Depots\n‚Ä¢ and many more\n\n- valid for all characters on this account\n- activated at purchase")
 	addItem("Premium Time", "30 Days of Premium Time", "30_days", 250, 30)
 	addItem("Premium Time", "90 Days of Premium Time", "90_days", 750, 90)
 	addItem("Premium Time", "180 Days of Premium Time", "180_days", 1500, 180)
 	addItem("Premium Time", "360 Days of Premium Time", "360_days", 3000, 360)
 
 	addCategory(nil, "Consumables", 6, CATEGORY_NONE)
-	addCategory("Consumables", "Blessings", 8, CATEGORY_BLESSING, "Reduces your character's chance to lose any items as well as the amount of your character's experience and skill loss upon death:\n\nï 1 blessing = 8.00% less Skill / XP loss, 30% equipment protection\nï 2 blessing = 16.00% less Skill / XP loss, 55% equipment protection\nï 3 blessing = 24.00% less Skill / XP loss, 75% equipment protection\nï 4 blessing = 32.00% less Skill / XP loss, 90% equipment protection\nï 5 blessing = 40.00% less Skill / XP loss, 100% equipment protection\nï 6 blessing = 48.00% less Skill / XP loss, 100% equipment protection\nï 7 blessing = 56.00% less Skill / XP loss, 100% equipment protection\n\n- only usable by purchasing character\n- maximum amount that can be owned by character: 5\n- added directly to the Record of Blessings\n- characters with a red or black skull will always lose all equipment upon death")
+	addCategory("Consumables", "Blessings", 8, CATEGORY_BLESSING, "Reduces your character's chance to lose any items as well as the amount of your character's experience and skill loss upon death:\n\n‚Ä¢ 1 blessing = 8.00% less Skill / XP loss, 30% equipment protection\n‚Ä¢ 2 blessing = 16.00% less Skill / XP loss, 55% equipment protection\n‚Ä¢ 3 blessing = 24.00% less Skill / XP loss, 75% equipment protection\n‚Ä¢ 4 blessing = 32.00% less Skill / XP loss, 90% equipment protection\n‚Ä¢ 5 blessing = 40.00% less Skill / XP loss, 100% equipment protection\n‚Ä¢ 6 blessing = 48.00% less Skill / XP loss, 100% equipment protection\n‚Ä¢ 7 blessing = 56.00% less Skill / XP loss, 100% equipment protection\n\n- only usable by purchasing character\n- maximum amount that can be owned by character: 5\n- added directly to the Record of Blessings\n- characters with a red or black skull will always lose all equipment upon death")
 	addItem("Blessings", "All regular Blessings", "All_regular_Blessings", 130, -1)
 	addItem("Blessings", "The Spiritual Shielding", "The_Spiritual_Shielding", 25, 1)
 	addItem("Blessings", "The Embrace of Tibia", "The_Embrace_of_Tibia", 25, 2)
@@ -304,7 +304,7 @@ function defaultChangeNameCallback(player, offer)
     end
 
 	local characterName = offer.nick:trim()
-	local v = getValid(characterName:lower(), false) -- true se quiser que toda primeira letra seja mai√∫scula
+	local v = getValid(characterName:lower(), false) -- true se quiser que toda primeira letra seja mai√É¬∫scula
 	if not validName(v) then
 		return "You can't use this character name."
 	end
@@ -316,7 +316,7 @@ function defaultChangeNameCallback(player, offer)
 	local lastName = getPlayerName(player)
 	db.query("UPDATE players SET name = "..db.escapeString(characterName).." WHERE name = "..db.escapeString(lastName)..";")
 	db.query("UPDATE player_deaths SET killed_by = "..db.escapeString(characterName)..", mostdamage_by = "..db.escapeString(characterName).." WHERE killed_by = "..db.escapeString(lastName).." OR mostdamage_by = "..db.escapeString(lastName)..";")
-    db.query("UPDATE player_deaths_backup SET killed_by = "..db.escapeString(characterName)..", mostdamage_by = "..db.escapeString(characterName).." WHERE killed_by = "..db.escapeString(lastName).." OR mostdamage_by = "..db.escapeString(lastName)..";")
+  db.query("UPDATE player_deaths_backup SET killed_by = "..db.escapeString(characterName)..", mostdamage_by = "..db.escapeString(characterName).." WHERE killed_by = "..db.escapeString(lastName).." OR mostdamage_by = "..db.escapeString(lastName)..";")
 	db.query(string.format("INSERT INTO `change_name_history` (`player_id`, `last_name`, `current_name`, `changed_name_in`) VALUES (%d, %s, %s, %d)", player:getGuid(), db.escapeString(lastName), db.escapeString(characterName), os.time()))
 	return false
 end
@@ -375,7 +375,7 @@ function gameStoreUpdateHistory(player)
 		repeat
 			table.insert(history, {
 				date = result.getDataString(resultId, "date"),
-				price = result.getDataInt(resultId, "price"),
+				price = result.getDataInt(resultId, "cost"),
 				name = result.getDataString(resultId, "title"),
 				count = result.getDataInt(resultId, "count")
 			})
