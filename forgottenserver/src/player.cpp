@@ -4231,9 +4231,9 @@ bool Player::toggleMount(bool mount)
 	return true;
 }
 
-bool Player::tameMount(uint8_t mountId)
+bool Player::tameMount(uint16_t mountId)
 {
-	if (!g_game.mounts.getMountByID(mountId)) {
+	if (!g_game.mounts.getMountByID(mountId) && !g_game.mounts.getMountByClientID(mountId)) {
 		return false;
 	}
 

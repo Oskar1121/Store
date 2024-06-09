@@ -1,0 +1,10 @@
+Module
+  name: game_store
+  description: In-game store
+  author: MatC
+  website: None
+  sandboxed: true
+  autoload: true
+  scripts: [ game_store ]
+  @onLoad: init()
+  @onUnload: terminate()
